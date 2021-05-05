@@ -1,0 +1,53 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+spec:
+  releaseName: prometheus-operator
+  targetNamespace: monitoring
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 14.6.2
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus
+        namespace: flux-system
+  values:
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        https: true
+        resource: false
+        resourcePath: "/metrics/resource"
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 4096Mi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ebs-sc
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 20Gi
+      ingress:
+        enabled: false
+    grafana:
+      defaultDashboardsEnabled: true
+      ingress:
+        enabled: false
+    alertmanager:
+      ingress:
+        enabled: false

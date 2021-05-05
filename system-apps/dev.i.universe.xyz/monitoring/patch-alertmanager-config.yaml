@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+spec:
+  values:
+    alertmanager:
+      config:
+        global:
+          resolve_timeout: 5m
+          slack_api_url: "https://hooks.slack.com/services/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"
+        route:
+          group_by:
+          - alertname
+          - cluster
+          - service
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 1h
+          receiver: default-receiver
+        receivers:
+        - name: 'default-receiver'
+          slack_configs:
+          - username: "dev-eks"
+            channel: "#infra-alerts-universe-xyz"
+            send_resolved: true
+            icon_url: https://avatars3.githubusercontent.com/u/3380462
+            title: '[{{ .Status| toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
+            text: >-
+              {{ range .Alerts }}
+                *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                *Description:* {{ .Annotations.description }}
+                *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:> *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
+                *Details:*
+                {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                {{ end }}
+              {{ end }}
+        - name: 'null'

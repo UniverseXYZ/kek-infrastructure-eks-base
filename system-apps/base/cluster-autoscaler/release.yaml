@@ -1,0 +1,57 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cluster-autoscaler
+  namespace: kube-system
+spec:
+  releaseName: cluster-autoscaler
+  targetNamespace: kube-system
+  interval: 5m
+  chart:
+    spec:
+      chart: cluster-autoscaler
+      version: 9.9.2
+      sourceRef:
+        kind: HelmRepository
+        name: autoscaler
+        namespace: flux-system
+  values:
+    replicaCount: 2
+    cloudProvider: aws
+    awsRegion: us-east-1
+    autoDiscovery:
+      clusterName: dev-i-universe-xyz
+    extraArgs:
+      balance-similar-node-groups: true
+    rbac:
+      create: true
+      serviceAccount:
+        create: false
+        name: cluster-autoscaler
+    securityContext:
+      fsGroup: 63000
+      runAsUser: 63000
+      runAsGroup: 63000
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - all
+    resources:
+      requests:
+        cpu: 50m
+        memory: 512Mi
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - aws-cluster-autoscaler
+            topologyKey: topology.kubernetes.io/zone
+    priorityClassName: system-cluster-critical

@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metrics-server
+  namespace: kube-system
+spec:
+  releaseName: metrics-server
+  targetNamespace: kube-system
+  interval: 5m
+  chart:
+    spec:
+      chart: metrics-server
+      version: 5.8.4
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+    rbac:
+      create: true
+    serviceAccount:
+      create: true
+    apiService:
+      create: true
+    extraArgs:
+      kubelet-preferred-address-types: InternalIP
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+    priorityClassName: system-cluster-critical

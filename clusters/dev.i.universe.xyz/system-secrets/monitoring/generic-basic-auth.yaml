@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: generic-basic-auth
+    namespace: monitoring
+type: Opaque
+data:
+    auth: ENC[AES256_GCM,data:vz5h+7fl1riuAalJ5mdQTeQYVB5lRmGsH+0KmbLoB7QRtcoMm3qDpz1VycOFrvUewimNtAoeifyroo8gc0A8Cg==,iv:WvGLP95WXnX7ORpqHFJP1uIEN7zNe0zThEGHrBqefH4=,tag:9+sU0nUg6XvphT9+Fk38VQ==,type:str]
+sops:
+    kms:
+        - arn: arn:aws:kms:us-east-1:076129510628:key/f019707e-98d5-454b-adcd-a4b8ccc35f44
+          created_at: "2021-05-05T10:05:21Z"
+          enc: AQICAHicCjtoxmBmz2MO3QTlS3370ieytvfowEbSDe18IeRxZAF1VMB3hLicN+tm72El4IOVAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMuVQC7jAIV2y9zI2tAgEQgDuTK7ETfuODWCrJMSSWw92IdOdQ+O2oU5kx2fJ/wa0dB1VgQa+e1Gv7+B8eqipnQXwSyHMlKot+BCux2A==
+          aws_profile: ""
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-05-05T10:05:22Z"
+    mac: ENC[AES256_GCM,data:i44mF6gexXya2xvqRfg7FzFzTW6TbmN+vk/Q6Yj4gu+MqpCn2fZZGl/2nCYJuyQ7aPCshsKk89eyHJL0jHb1lX80sOjUrSOi8W+6NutuQhXOltR/yDw4QR29ezWI2pn8N66B+Wdl9Hh/fTabQFmHhaNduDHDXDY/yKseVc433Iw=,iv:2Gbh8TXgsmkKEkOSFAtTLW9KAApjigB2ROrjK/LqyXI=,tag:0nnTCnFzWS3XCR+JgPKxUA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

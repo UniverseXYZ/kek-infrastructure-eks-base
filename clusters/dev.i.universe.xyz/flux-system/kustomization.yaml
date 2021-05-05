@@ -3,3 +3,7 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+- ../flux-system-notifications.yaml
+- ../system-apps.yaml
+- ../system-secrets.yaml
+- ../system-crds.yaml

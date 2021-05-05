@@ -1,0 +1,81 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress
+spec:
+  releaseName: ingress-nginx
+  targetNamespace: ingress
+  interval: 5m
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: 3.29.0
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+  values:
+    rbac:
+      create: true
+    serviceAccount:
+      create: true
+    podSecurityPolicy:
+      enabled: true
+    controller:
+      image:
+        digest: ''
+      name: controller
+      ingressClass: 'nginx'
+      replicaCount: 2
+      minAvailable: 1
+      config:
+        server-tokens: "false"
+      publishService:
+        enabled: true
+      proxySetHeaders:
+        X-Content-Type-Options: nosniff
+        X-Download-Options: noopen
+        X-XSS-Protection: 1; mode=block
+      service:
+        annotations:
+          service.beta.kubernetes.io/aws-load-balancer-type: nlb
+        externalTrafficPolicy: 'Local'
+      metrics:
+        enabled: false
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/instance
+                  operator: In
+                  values:
+                  - ingress-nginx
+              topologyKey: topology.kubernetes.io/zone
+      podSecurityContext:
+        fsGroup: 101
+        runAsUser: 101
+        runAsNonRoot: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 1
+          memory: 1024Mi
+    defaultBackend:
+      enabled: true
+      podSecurityContext:
+        fsGroup: 65534
+        runAsUser: 65534
+        runAsNonRoot: true
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 100m
+          memory: 128Mi

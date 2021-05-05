@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  releaseName: cert-manager
+  targetNamespace: cert-manager
+  interval: 5m
+  chart:
+    spec:
+      chart: cert-manager
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    installCRDs: true
+    rbac:
+      create: true
+    serviceAccount:
+      create: true
+      name: cert-manager
+    prometheus:
+      enabled: false
+    ingressShim:
+      enabled: true
+      defaultIssuerName: letsencrypt-prod
+      defaultIssuerKind: ClusterIssuer
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi

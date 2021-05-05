@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: kube-system
+spec:
+  releaseName: external-dns
+  targetNamespace: kube-system
+  interval: 5m
+  chart:
+    spec:
+      chart: external-dns
+      version: 4.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+    replicas: 2
+    provider: aws
+    aws:
+      region: us-east-1
+      zoneType: public
+    rbac:
+      create: true
+    serviceAccount:
+      create: false
+      name: external-dns
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - external-dns
+            topologyKey: topology.kubernetes.io/zone
+    priorityClassName: system-cluster-critical
