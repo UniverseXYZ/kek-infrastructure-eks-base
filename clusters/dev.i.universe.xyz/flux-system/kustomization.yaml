@@ -7,3 +7,4 @@ resources:
 - system-apps.yaml
 - system-secrets.yaml
 - system-crds.yaml
+- eks-app.yaml
