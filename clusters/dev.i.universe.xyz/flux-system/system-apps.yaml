@@ -55,14 +55,6 @@ spec:
       name: prometheus-operator-kube-state-metrics
       namespace: monitoring
     - apiVersion: apps/v1
-      kind: StatefulSet
-      name: alertmanager-prometheus-operator-kube-p-alertmanager
-      namespace: monitoring
-    - apiVersion: apps/v1
-      kind: StatefulSet
-      name: prometheus-prometheus-operator-kube-p-prometheus
-      namespace: monitoring
-    - apiVersion: apps/v1
       kind: Deployment
       name: ingress-nginx-controller
       namespace: ingress
