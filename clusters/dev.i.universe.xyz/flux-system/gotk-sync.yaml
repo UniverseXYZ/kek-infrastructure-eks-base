@@ -10,7 +10,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/kekDAO/kek-infrastructure-eks-base
+  url: ssh://git@github.com/UniverseXYZ/kek-infrastructure-eks-base
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
