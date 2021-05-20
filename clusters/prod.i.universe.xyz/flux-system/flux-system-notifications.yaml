@@ -1,0 +1,17 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: flux-system-notifications
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/prod.i.universe.xyz/flux-system/flux-system-notifications
+  prune: true
+  validation: client
+  decryption:
+    provider: sops
+  dependsOn:
+    - name: flux-system

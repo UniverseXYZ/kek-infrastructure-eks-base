@@ -1,0 +1,64 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: system-apps
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./system-apps/prod.i.universe.xyz
+  prune: true
+  validation: client
+  decryption:
+    provider: sops
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cluster-autoscaler-aws-cluster-autoscaler
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ebs-csi-controller
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: external-dns
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: metrics-server
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-cainjector
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-webhook
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: prometheus-operator-grafana
+      namespace: monitoring
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: prometheus-operator-kube-p-operator
+      namespace: monitoring
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: prometheus-operator-kube-state-metrics
+      namespace: monitoring
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ingress-nginx-controller
+      namespace: ingress
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ingress-nginx-defaultbackend
+      namespace: ingress

@@ -1,0 +1,9 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: slack
+spec:
+  type: slack
+  channel: infra-alerts-universe-xyz
+  secretRef:
+    name: slack-webhook
