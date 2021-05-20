@@ -1,0 +1,67 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+spec:
+  values:
+    prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          acme.cert-manager.io/http01-ingress-class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: "prometheus.prod.i.universe.xyz"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: generic-basic-auth
+          nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+        hosts:
+        - prometheus.prod.i.universe.xyz
+        path: /
+        tls:
+        - secretName: prometheus.prod.i.universe.xyz-tls
+          hosts:
+          - prometheus.prod.i.universe.xyz
+    grafana:
+      ingress:
+        enabled: true
+        annotations:
+          acme.cert-manager.io/http01-ingress-class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: "grafana.prod.i.universe.xyz"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: generic-basic-auth
+          nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+        hosts:
+        - grafana.prod.i.universe.xyz
+        path: /
+        tls:
+        - secretName: grafana.prod.i.universe.xyz-tls
+          hosts:
+          - grafana.prod.i.universe.xyz
+    alertmanager:
+      ingress:
+        enabled: true
+        annotations:
+          acme.cert-manager.io/http01-ingress-class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: "alertmanager.prod.i.universe.xyz"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/auth-type: basic
+          nginx.ingress.kubernetes.io/auth-secret: generic-basic-auth
+          nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+        hosts:
+        - alertmanager.prod.i.universe.xyz
+        path: /
+        tls:
+        - secretName: alertmanager.prod.i.universe.xyz-tls
+          hosts:
+          - alertmanager.prod.i.universe.xyz
