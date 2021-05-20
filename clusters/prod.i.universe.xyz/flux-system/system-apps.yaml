@@ -16,10 +16,6 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: cluster-autoscaler-aws-cluster-autoscaler
-      namespace: kube-system
-    - apiVersion: apps/v1
-      kind: Deployment
       name: ebs-csi-controller
       namespace: kube-system
     - apiVersion: apps/v1
