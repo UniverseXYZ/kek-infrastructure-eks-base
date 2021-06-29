@@ -12,3 +12,10 @@ resources:
 patchesStrategicMerge:
   - monitoring/patch-ingress.yaml
   - monitoring/patch-alertmanager-config.yaml
+patchesJson6902:
+  - path: patch-clusterName.yaml
+    target:
+      group: helm.toolkit.fluxcd.io
+      kind: HelmRelease
+      name: cluster-autoscaler
+      version: v2beta1
