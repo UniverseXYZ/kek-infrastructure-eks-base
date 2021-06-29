@@ -1,3 +1,3 @@
 - op: replace
   path: /spec/values/autoDiscovery/clusterName
-  value: "dev-i-universe-com"
+  value: "dev-i-universe-xyz"
