@@ -2749,8 +2749,8 @@ spec:
             cpu: 1000m
             memory: 1Gi
           requests:
-            cpu: 50m
-            memory: 64Mi
+            cpu: 500m
+            memory: 256Mi
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
