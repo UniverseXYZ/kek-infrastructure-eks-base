@@ -2590,11 +2590,11 @@ spec:
             port: healthz
         resources:
           limits:
-            cpu: 1000m
+            cpu: 2000m
             memory: 1Gi
           requests:
-            cpu: 100m
-            memory: 64Mi
+            cpu: 500m
+            memory: 128Mi
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
@@ -2746,10 +2746,10 @@ spec:
             port: http
         resources:
           limits:
-            cpu: 1000m
+            cpu: 2000m
             memory: 1Gi
           requests:
-            cpu: 500m
+            cpu: 1000m
             memory: 256Mi
         securityContext:
           allowPrivilegeEscalation: false
