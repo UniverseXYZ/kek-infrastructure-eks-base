@@ -10,8 +10,8 @@ resources:
   - ../base/metrics-server
   - ../base/ingress-nginx
   - ../base/kube-prometheus-stack
-  - eks-authz-dev
-  - eks-authz-dev
+  - ./eks-authz-dev
+  - ./eks-authz-alpha
 patchesStrategicMerge:
   - monitoring/patch-ingress.yaml
   - monitoring/patch-alertmanager-config.yaml
