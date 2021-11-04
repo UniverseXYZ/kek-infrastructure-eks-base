@@ -1,0 +1,49 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::076129510628:role/eksctl-dev-i-universe-xyz-nodegro-NodeInstanceRole-D60JOL8T2TR5
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::076129510628:role/eksctl-dev-i-universe-xyz-nodegro-NodeInstanceRole-193I124T7I99N
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/george
+      username: admin
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/catalin.bara
+      username: adminz
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/vadim.lungu
+      username: admin
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/alexm
+      username: admin
+    - groups:
+      - dev-external-developers
+      - alpha-external-developers
+      userarn: arn:aws:iam::076129510628:user/vadimtest
+      username: vadimtest
+    - groups:
+      - dev-external-developers
+      - alpha-external-developers
+      userarn: arn:aws:iam::076129510628:user/johncarter
+      username: johncarter
+    - groups:
+      - dev-external-developers
+      - alpha-external-developers
+      userarn: arn:aws:iam::076129510628:user/viktortodorov
+      username: viktortodorov
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system

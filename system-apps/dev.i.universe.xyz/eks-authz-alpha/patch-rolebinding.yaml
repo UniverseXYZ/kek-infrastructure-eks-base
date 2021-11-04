@@ -1,0 +1,11 @@
+- op: replace
+  path: /metadata/name
+  value: alpha-external-developers
+
+- op: replace
+  path: /roleRef/name
+  value: alpha-external-developers
+
+- op: replace
+  path: /subjects/0/name
+  value: alpha-external-developers
