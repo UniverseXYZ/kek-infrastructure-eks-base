@@ -48,6 +48,17 @@ spec:
       defaultDashboardsEnabled: true
       ingress:
         enabled: false
+      additionalDataSources:
+      - name: Loki
+        access: proxy
+        editable: false
+        orgId: 1
+        type: loki
+        version: 1
+        url: http://loki.loki:3100
+      grafana.ini:
+        plugins:
+          enable_alpha: true
     alertmanager:
       ingress:
         enabled: false
