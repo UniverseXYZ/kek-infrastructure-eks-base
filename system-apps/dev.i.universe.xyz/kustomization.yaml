@@ -12,7 +12,7 @@ resources:
   - ../base/kube-prometheus-stack
   - ./eks-authz-dev
   - ./eks-authz-alpha
-  - ../base/kube-prometheus-stack-v19
+#  - ../base/kube-prometheus-stack-v19
   - ../base/loki
 patchesStrategicMerge:
   - monitoring/patch-ingress.yaml
