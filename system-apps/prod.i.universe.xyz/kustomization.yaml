@@ -10,6 +10,7 @@ resources:
   - ../base/ingress-nginx
   - ../base/kube-prometheus-stack
   - ../base/cluster-autoscaler
+  - ./eks-authz-prod
 patchesStrategicMerge:
   - monitoring/patch-ingress.yaml
   - monitoring/patch-alertmanager-config.yaml
