@@ -12,6 +12,7 @@ resources:
   - ../base/kube-prometheus-stack
   - ./eks-authz-dev
   - ./eks-authz-alpha
+  - ./eks-authz-auctions
 #  - ../base/kube-prometheus-stack-v19
   - ../base/loki
 patchesStrategicMerge:
