@@ -13,6 +13,7 @@ resources:
   - ./eks-authz-dev
   - ./eks-authz-alpha
   - ./eks-authz-auctions
+  - ./eks-authz-monitoring
 #  - ../base/kube-prometheus-stack-v19
   - ../base/loki
 patchesStrategicMerge:
