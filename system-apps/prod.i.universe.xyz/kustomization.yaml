@@ -11,6 +11,7 @@ resources:
   - ../base/kube-prometheus-stack
   - ../base/cluster-autoscaler
   - ./eks-authz-prod
+  - ../base/loki
 patchesStrategicMerge:
   - monitoring/patch-ingress.yaml
   - monitoring/patch-alertmanager-config.yaml
