@@ -1,23 +1,23 @@
 apiVersion: v1
+data:
+    auth: ENC[AES256_GCM,data:032qMdtuHllMoIDqKvCxqX69FKVokT97hhVdphd6LqR1RTtCTdzd3VnGHBWNT5KzCX9KxdZQ9njiJgYaQHWrGg==,iv:ZEytWwEHuvg031WbmY1X3YIEVQXX9YGSmlBonPseYEg=,tag:k82ZpI2AyC6S2Hh0ZknP9g==,type:str]
 kind: Secret
 metadata:
+    creationTimestamp: null
     name: generic-basic-auth
     namespace: monitoring
-type: Opaque
-data:
-    auth: ENC[AES256_GCM,data:1k9W7845MnFLN5WCYTewZ4dDeAnoYzDIZ+tPBERfHJtcXyXcb5UkKORSBkZ+EC6Z598j/blDtmvCQ4VeWZ/HTg==,iv:WUnsR1HveTG6Tbuktlg3eifK2SCMNfYNZMpzg5MvIHw=,tag:xcE4/6/VrHu9x+4Y9hJguQ==,type:str]
 sops:
     kms:
         - arn: arn:aws:kms:us-east-1:076129510628:key/eab03aa9-c5da-4c1b-807b-686aed83fb2c
-          created_at: "2021-05-20T12:08:34Z"
-          enc: AQICAHj0qDpfgO9wb8Ne63a0VPqmK07P9Pqm4dt4axNmrKd7LAGs7ARyNJNkDfIZIa+llwxWAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM8vsIffT/z063FKtEAgEQgDtYZyJvkVTg4jABE2425600Q820VG0Pl0ZInZlcr4xR9oJoTk1aiXzjy4ppMfjZVuwfDCcswet7Jkz6ow==
+          created_at: "2022-03-01T20:21:12Z"
+          enc: AQICAHj0qDpfgO9wb8Ne63a0VPqmK07P9Pqm4dt4axNmrKd7LAEttlVaC93PLXqpg3xETQXIAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMqQjppb8j4u5kBTADAgEQgDu68KA02Xew1DPzFEDFtiUF/Mid7m/hBhnkwAPuFczxLpwZX6+i6uwGH0LDQkMEYRWg06X5o4BCeWMP3g==
           aws_profile: ""
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-05-20T12:08:35Z"
-    mac: ENC[AES256_GCM,data:fCvf5qOaxppDcRuLpGUkjSWypDwZMPqBJEsj0nUdt83oL5Pj0a5PFYeJbHyj5t5K1ne5wWTzAMMdaP/JUpYZXzClLDR1GLZ244HT7KbFEiNxzAcGlmT9blDbVctjjfJXLUY6mrytbSX7sGNMteBpmkKvqjEaJfWpd5WYj3fQUWE=,iv:VfNRDNX6r1dNak6djOgbczYE2v5vqWZ2zlS1VRTjZbg=,tag:FZRlNhrGZ1GwDwajBOr7mg==,type:str]
+    lastmodified: "2022-03-01T20:21:12Z"
+    mac: ENC[AES256_GCM,data:1kMlJp1DzkXhqhGNWIjdOYnMjynaHgmyp3iMqD2Pn15ZbPb+5acMdunVh8PQmyM3Xih7/kn8S9HWSacBMnFLOAHwMdOZolQBqPQ8VTZJ22CewxBgYe+9Pu5yIuFfM3I77sVDdIUkCY4nQ6+5pcSNEMp40Tjs1CEJ4h9jAiZRIx0=,iv:pY7gnX2NLjZ705XKc48vOvUcuIcCjUTaehC2hGt7M08=,tag:ZcXiUOKkV7N383Et4ImE1g==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
