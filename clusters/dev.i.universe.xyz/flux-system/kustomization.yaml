@@ -8,3 +8,5 @@ resources:
 - system-secrets.yaml
 - system-crds.yaml
 - eks-app.yaml
+patchesStrategicMerge:
+- gotk-patches.yaml
