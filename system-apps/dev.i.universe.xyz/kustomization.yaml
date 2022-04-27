@@ -21,6 +21,7 @@ resources:
 patchesStrategicMerge:
   - monitoring/patch-ingress.yaml
   - monitoring/patch-alertmanager-config.yaml
+  - nginx-ingress/patch-tcp.yaml
 patchesJson6902:
   - path: patch-clusterName.yaml
     target:
