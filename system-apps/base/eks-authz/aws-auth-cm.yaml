@@ -29,6 +29,18 @@ data:
       userarn: arn:aws:iam::076129510628:user/alexm
       username: admin
     - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/felix
+      username: admin
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/kun
+      username: admin
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::076129510628:user/joe.guo
+      username: admin
+    - groups:
       - dev-external-developers
       - alpha-external-developers
       userarn: arn:aws:iam::076129510628:user/vadimtest
