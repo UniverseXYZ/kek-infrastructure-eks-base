@@ -30,15 +30,15 @@ data:
       username: admin
     - groups:
       - system:masters
-      userarn: arn:aws:iam::076129510628:user/felix
+      userarn: arn:aws:iam::702381165900:user/felix
       username: admin
     - groups:
       - system:masters
-      userarn: arn:aws:iam::076129510628:user/kun
+      userarn: arn:aws:iam::702381165900:user/kun
       username: admin
     - groups:
       - system:masters
-      userarn: arn:aws:iam::076129510628:user/joe.guo
+      userarn: arn:aws:iam::702381165900:user/joe.guo
       username: admin
     - groups:
       - dev-external-developers
