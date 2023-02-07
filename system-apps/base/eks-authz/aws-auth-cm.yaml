@@ -41,6 +41,10 @@ data:
       userarn: arn:aws:iam::702381165900:user/joe.guo
       username: admin
     - groups:
+      - system:masters
+      userarn: arn:aws:iam::702381165900:user/stanislav.stefanov
+      username: admin
+    - groups:
       - dev-external-developers
       - alpha-external-developers
       userarn: arn:aws:iam::076129510628:user/vadimtest
